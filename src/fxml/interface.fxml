@@ -37,7 +37,7 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label id="availableFunds" text="500">
+                        <Label fx:id="visualAvailableFunds" text=" ">
                            <font>
                               <Font size="24.0" />
                            </font>

@@ -1,9 +1,11 @@
+package Classes;
+
 public class Plant {
     public String name;
     public double price;
     public double sellPrice;
     public double growTime;
-    public int quantity = 0;
+    public int seedQuantity = 0;
     public Plant(String name, double price,double sellPrice, double growTime) {
         this.name = name;
         this.price = price;
@@ -18,13 +20,13 @@ public class Plant {
         return name + " | price: " + price + " | grow time: " + growTime;
     }
     public String infoPlantInventory() {
-        return quantity + " " + name + " " + growTime + "s";
+        return seedQuantity + " " + name + " " + growTime + "s";
     }
     public void incPlantQuantityInInventory() {
-        quantity += 1;
+        seedQuantity += 1;
     }
     public void decPlantQuantityInInventory() {
-        quantity -= 1;
+        seedQuantity -= 1;
     }
 
 }
