@@ -21,7 +21,7 @@ public class Interface {
     private ProgressBar theProgressBar;
     //inventory
     @FXML
-    private ListView<Plant> availablePlantList;
+    private ListView<String> availablePlantList;
     @FXML
     private TextField availableFunds;
     
@@ -34,19 +34,35 @@ public class Interface {
 
         //put all food elements into the list
         purchasablePlantList.getItems().addAll(
-                new Plant("wheat", 10, 2),
-                new Plant("strawberry", 20, 3),
-                new Plant("carrot", 35, 3.5)
+                new Plant("wheat", 10, 20, 2),
+                new Plant("carrot", 20, 50, 3),
+                new Plant("strawberry", 35, 80, 4.5)
         );
 
         //getSelected purchasablePlantList and add it to availablePlantList
         buyButton.setOnAction(event -> {
             Plant selectedPlant = purchasablePlantList.getSelectionModel().getSelectedItem();
-            availablePlantList.getItems().add(selectedPlant);
+            if(selectedPlant != null) {
+                selectedPlant.incPlantQuantityInInventory();
+                boolean found = false;
+                //plant is in inventory? add quantity
+                for(int i=0 ; i<availablePlantList.getItems().size() ; i++) {
+                    String item = availablePlantList.getItems().get(i);
+                    if (item.contains(selectedPlant.getName())) {
+                        availablePlantList.getItems().set(i, selectedPlant.infoPlantInventory());
+                        found = true;
+                        break;
+                    }
+                }
+                if(!found) {
+                    availablePlantList.getItems().add(selectedPlant.infoPlantInventory());
+                }
+
+            }
         });
         //drag and drop plant int field
         //drag plant in availablePlantList    drop in thePane
-
+        
         
 
 
