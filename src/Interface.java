@@ -25,7 +25,7 @@ public class Interface {
     @FXML
     private Label visualAvailableFunds;
 
-    public double availableFunds = 50;
+    public double availableFunds = 200;
 
 
 
@@ -37,8 +37,20 @@ public class Interface {
         //food into market list
         purchasablePlantList.getItems().addAll(
                 new Plant("wheat", 10, 20, 2),
-                new Plant("carrot", 20, 50, 3),
-                new Plant("strawberry", 35, 80, 4.5)
+                new Plant("carrot", 15, 30, 3),
+                new Plant("potato", 20, 40, 4),
+                new Plant("tomato", 25, 50, 5),
+                new Plant("chili", 30, 60, 6),
+                new Plant("strawberry", 35, 70, 7),
+                new Plant("grape", 40, 80, 8),
+                new Plant("lemon", 45, 90, 9),
+                new Plant("banana", 50, 100, 10),
+                new Plant("peach", 55, 110, 11),
+                new Plant("mushroom", 60, 120, 12),
+                new Plant("red_flower", 65, 130, 13),
+                new Plant("sugarcane", 70, 140, 14),
+                new Plant("pineapple", 80, 160, 15),
+                new Plant("watermelon", 90, 180, 16)
         );
         //buy seed -> seed inventory
         //getSelected purchasablePlantList and add it to availablePlantList
@@ -46,7 +58,7 @@ public class Interface {
             Plant selectedPlant = purchasablePlantList.getSelectionModel().getSelectedItem();
             //if a seed is selected
             if(selectedPlant != null) {
-                paySeed();
+                paySeed(selectedPlant);
             }
         });
 
@@ -58,16 +70,14 @@ public class Interface {
     public boolean canPay(double reference, double itemPrice) {
         return reference >= itemPrice;
     }
-    public void paySeed() {
-        Plant selectedPlant = purchasablePlantList.getSelectionModel().getSelectedItem();
+    public void paySeed(Plant selectedPlant) {
         if(canPay(availableFunds, selectedPlant.getPrice())) {
             availableFunds -= selectedPlant.getPrice();
             updateView();
-            addSeedInventory();
+            addSeedInventory(selectedPlant);
         }
     }
-    public void addSeedInventory() {
-        Plant selectedPlant = purchasablePlantList.getSelectionModel().getSelectedItem();
+    public void addSeedInventory(Plant selectedPlant) {
         selectedPlant.incPlantQuantityInInventory();
         boolean found = false;
         //plant is in inventory? add quantity
