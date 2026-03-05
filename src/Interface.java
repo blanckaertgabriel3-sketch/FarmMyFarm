@@ -1,15 +1,13 @@
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 
 public class Interface {
+    //market
     @FXML
     private ListView<Plant> purchasablePlantList;
     @FXML
@@ -21,6 +19,12 @@ public class Interface {
     private ImageView thePictureView;
     @FXML
     private ProgressBar theProgressBar;
+    //inventory
+    @FXML
+    private ListView<Plant> availablePlantList;
+    @FXML
+    private TextField availableFunds;
+    
 
 
     public void initialize() {
@@ -35,11 +39,15 @@ public class Interface {
                 new Plant("carrot", 35, 3.5)
         );
 
-        //getSelected buyListElement
+        //getSelected purchasablePlantList and add it to availablePlantList
         buyButton.setOnAction(event -> {
-            Plant selectedFood = purchasablePlantList.getSelectionModel().getSelectedItem();
-            System.out.println(selectedFood.getName());
+            Plant selectedPlant = purchasablePlantList.getSelectionModel().getSelectedItem();
+            availablePlantList.getItems().add(selectedPlant);
         });
+        //drag and drop plant int field
+        //drag plant in availablePlantList    drop in thePane
+
+        
 
 
     }

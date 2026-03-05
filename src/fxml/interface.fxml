@@ -25,18 +25,18 @@
             </Pane>
          </children>
       </Group>
-      <Group layoutX="1250.0">
+      <Group layoutX="1175.0">
          <children>
-            <VBox prefHeight="632.0" prefWidth="187.0">
+            <VBox prefHeight="632.0" prefWidth="263.0">
                <children>
                   <HBox prefHeight="45.0" prefWidth="187.0">
                      <children>
                         <TextField prefHeight="26.0" prefWidth="70.0" promptText="Money:" />
-                        <TextField id="availableFunds" promptText="500" />
+                        <TextField fx:id="availableFunds" prefHeight="26.0" prefWidth="200.0" promptText="500" />
                      </children>
                   </HBox>
                   <TextField id="plantNb" promptText="Plant:" />
-                  <ListView id="availablePlantList" prefHeight="582.0" prefWidth="187.0" />
+                  <ListView fx:id="availablePlantList" prefHeight="582.0" prefWidth="227.0" />
                </children>
             </VBox>
          </children>
