@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Interface {
     @FXML
-    private ListView<String> buyFoodList;
+    private ListView<Plant> purchasablePlantList;
     @FXML
     private Button buyButton;
     //field Group
@@ -27,16 +27,18 @@ public class Interface {
         //load the first field State.
         Image image = new Image(getClass().getResourceAsStream("/img/frutsState/dirt.png"));
         thePictureView.setImage(image);
-        //some food in an array
-        ArrayList<String> food = new ArrayList<>();
-        food.add("wheat");
-        food.add("bananas");
-        //print all food elements into the list
-        buyFoodList.getItems().addAll(food);
+
+        //put all food elements into the list
+        purchasablePlantList.getItems().addAll(
+                new Plant("wheat", 10, 2),
+                new Plant("strawberry", 20, 3),
+                new Plant("carrot", 35, 3.5)
+        );
+
         //getSelected buyListElement
         buyButton.setOnAction(event -> {
-            String selectedFood = buyFoodList.getSelectionModel().getSelectedItem();
-            System.out.println(selectedFood);
+            Plant selectedFood = purchasablePlantList.getSelectionModel().getSelectedItem();
+            System.out.println(selectedFood.getName());
         });
 
 
