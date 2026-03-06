@@ -1,10 +1,9 @@
-import Classes.LandFarm;
+import Classes.Land;
 import Classes.Plant;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.layout.Pane;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.control.Label;
 
 public class Interface {
@@ -15,7 +14,7 @@ public class Interface {
     private Button buyButton;
     //land Farm
     @FXML
-    private Pane landFarm;
+    private GridPane landFarm;
     //inventory
     @FXML
     private ListView<String> availablePlantList;
@@ -48,17 +47,14 @@ public class Interface {
         );
         //buy seed -> seed inventory
         //getSelected purchasablePlantList and add it to availablePlantList
-        buyButton.setOnAction(event -> {
+        buyButton.setOnAction(_ -> {
             Plant selectedPlant = purchasablePlantList.getSelectionModel().getSelectedItem();
             //if a seed is selected
             if(selectedPlant != null) {
                 paySeed(selectedPlant);
             }
         });
-        LandFarm landFarm1 = new LandFarm();
-        landFarm.getChildren().add(landFarm1);
-        //drag and drop plant int field
-        //drag plant in availablePlantList    drop in thePane
+        initializeField();
     }
     //MARKET
     public boolean canPay(double reference, double itemPrice) {
@@ -91,5 +87,22 @@ public class Interface {
         //money
         visualAvailableFunds.setText(String.valueOf(availableFunds));
     }
-    //DRAG-DROP
+    public void initializeField() {
+        int rows = 20;
+        int columns = 20;
+
+        // Land[][] lands = new Land[rows][columns];
+
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < columns; col++) {
+                Land land = new Land();
+
+                landFarm.setHalignment(land.getBtn(), javafx.geometry.HPos.CENTER);
+                landFarm.setValignment(land.getBtn(), javafx.geometry.VPos.CENTER);
+                landFarm.setAlignment(Pos.CENTER);
+
+                landFarm.add(land.getBtn(), col, row);
+            }
+        }
+    }
 }
