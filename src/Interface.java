@@ -1,3 +1,4 @@
+import Classes.LandFarm;
 import Classes.Plant;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -12,13 +13,9 @@ public class Interface {
     private ListView<Plant> purchasablePlantList;
     @FXML
     private Button buyButton;
-    //field Group
+    //land Farm
     @FXML
-    private Pane thePane;
-    @FXML
-    private ImageView thePictureView;
-    @FXML
-    private ProgressBar theProgressBar;
+    private Pane landFarm;
     //inventory
     @FXML
     private ListView<String> availablePlantList;
@@ -31,9 +28,6 @@ public class Interface {
 
     public void initialize() {
         updateView();
-        //load the first field State.
-        Image image = new Image(getClass().getResourceAsStream("/img/frutsState/dirt.png"));
-        thePictureView.setImage(image);
         //food into market list
         purchasablePlantList.getItems().addAll(
                 new Plant("wheat", 10, 20, 2),
@@ -61,8 +55,8 @@ public class Interface {
                 paySeed(selectedPlant);
             }
         });
-
-
+        LandFarm landFarm1 = new LandFarm();
+        landFarm.getChildren().add(landFarm1);
         //drag and drop plant int field
         //drag plant in availablePlantList    drop in thePane
     }
