@@ -21,10 +21,13 @@ public class Land {
         btnAction();
     }
     public void btnAction() {
-        btn.setOnAction(_ -> plantAnimate());
+        btn.setOnAction(_ -> animatePlant());
     }
     public Button getBtn() {return btn;}
-    public void plantAnimate() {
+    public void getSeedToPlant(String selectedPlant) {
+        System.out.println("selected seed in inventory: " + selectedPlant);
+    }
+    public void animatePlant() {
 
         AnimationTimer timer = new AnimationTimer() {
             @Override

@@ -55,6 +55,11 @@ public class Interface {
             }
         });
         initializeField();
+        availablePlantList.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                System.out.println("Selected seed: " + newSelection);
+            }
+        });
     }
     //MARKET
     public boolean canPay(double reference, double itemPrice) {
