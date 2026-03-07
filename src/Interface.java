@@ -88,18 +88,23 @@ public class Interface {
         visualAvailableFunds.setText(String.valueOf(availableFunds));
     }
     public void initializeField() {
-        int rows = 20;
-        int columns = 20;
+        int rows = 2;
+        int columns = 5;
+
+        landFarm.setHgap(5);
+        landFarm.setVgap(5);
 
         // Land[][] lands = new Land[rows][columns];
 
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < columns; col++) {
                 Land land = new Land();
-
+                /*
                 landFarm.setHalignment(land.getBtn(), javafx.geometry.HPos.CENTER);
                 landFarm.setValignment(land.getBtn(), javafx.geometry.VPos.CENTER);
-                landFarm.setAlignment(Pos.CENTER);
+
+                 */
+                landFarm.setAlignment(Pos.TOP_CENTER);
 
                 landFarm.add(land.getBtn(), col, row);
             }
