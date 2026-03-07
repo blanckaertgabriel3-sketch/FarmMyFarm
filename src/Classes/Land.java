@@ -30,7 +30,6 @@ public class Land {
     public void animatePlant() {
 
         AnimationTimer timer = new AnimationTimer() {
-            @Override
             public void handle(long now) {
                 if(timerStart < 0) timerStart = now;
                 double lapSeedSeconds = (now - timerStart) / 1_000_000_000.0;

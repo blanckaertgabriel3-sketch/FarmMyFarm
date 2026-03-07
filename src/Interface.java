@@ -17,7 +17,7 @@ public class Interface {
     private GridPane landFarm;
     //inventory
     @FXML
-    private ListView<String> availablePlantList;
+    private ListView<Plant> availablePlantList;
     @FXML
     private Label visualAvailableFunds;
 
@@ -27,7 +27,7 @@ public class Interface {
 
     public void initialize() {
         updateView();
-        //food into market list
+        //seed into market list
         purchasablePlantList.getItems().addAll(
                 new Plant("wheat", 10, 20, 2),
                 new Plant("carrot", 15, 30, 3),
@@ -55,9 +55,9 @@ public class Interface {
             }
         });
         initializeField();
-        availablePlantList.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
-                System.out.println("Selected seed: " + newSelection);
+        availablePlantList.getSelectionModel().selectedItemProperty().addListener((_, _, inventorySelection) -> {
+            if (inventorySelection != null) {
+                System.out.println("Selected seed: " + inventorySelection);
             }
         });
     }
@@ -70,22 +70,26 @@ public class Interface {
             availableFunds -= selectedPlant.getPrice();
             updateView();
             addSeedInventory(selectedPlant);
+
         }
     }
     public void addSeedInventory(Plant selectedPlant) {
-        selectedPlant.incPlantQuantityInInventory();
-        boolean found = false;
-        //plant is in inventory? add quantity
-        for(int i=0 ; i<availablePlantList.getItems().size() ; i++) {
-            String item = availablePlantList.getItems().get(i);
-            if (item.contains(selectedPlant.getName())) {
-                availablePlantList.getItems().set(i, selectedPlant.infoPlantInventory());
-                found = true;
-                break;
+        availablePlantList.setCellFactory(_ -> new ListCell<>() {
+
+            @Override
+            protected void updateItem(Plant plant, boolean empty) {
+                super.updateItem(plant, empty);
+
+                if (empty || plant == null) {
+                    setText(null);
+                } else {
+                    setText(" x" + plant.getSeedQuantity() + " " + plant.getName());
+                }
             }
-        }
-        if(!found) {
-            availablePlantList.getItems().add(selectedPlant.infoPlantInventory());
+        });
+        selectedPlant.incPlantQuantityInInventory();
+        if(!availablePlantList.getItems().contains(selectedPlant)) {
+            availablePlantList.getItems().add(selectedPlant);
         }
     }
     public void updateView() {
