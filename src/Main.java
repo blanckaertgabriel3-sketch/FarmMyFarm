@@ -8,9 +8,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/interface.fxml"));
-        primaryStage.setTitle("Application JavaFX");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.setFullScreen(true);
+        primaryStage.setTitle("Farm My Farm");
+        primaryStage.setScene(new Scene(root, 1400, 450));
+        //primaryStage.setFullScreen(true);
         primaryStage.show();
     }
 
