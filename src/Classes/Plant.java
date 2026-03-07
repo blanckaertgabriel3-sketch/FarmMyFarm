@@ -20,7 +20,7 @@ public class Plant {
         return name + " | price: " + price + " | grow time: " + growTime;
     }
     public String infoPlantInventory() {
-        return seedQuantity + " " + name + " " + growTime + "s";
+        return "x" + seedQuantity + " " + name;
     }
     public void incPlantQuantityInInventory() {
         seedQuantity += 1;
