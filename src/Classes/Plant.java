@@ -15,9 +15,6 @@ public class Plant {
     public String getName() { return name; }
     public double getPrice() { return price; }
     public double getSeedQuantity() { return seedQuantity; }
-    public String toString() {
-        return name + " | price: " + price + " | grow time: " + growTime;
-    }
     public void incPlantQuantityInInventory() {
         seedQuantity += 1;
     }

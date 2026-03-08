@@ -27,6 +27,8 @@ public class Interface {
 
     public void initialize() {
         updateView();
+        initializeField();
+        cellDef();
         //seed into market list
         purchasablePlantList.getItems().addAll(
                 new Plant("wheat", 10, 20, 2),
@@ -45,8 +47,6 @@ public class Interface {
                 new Plant("pineapple", 80, 160, 15),
                 new Plant("watermelon", 90, 180, 16)
         );
-        //buy seed -> seed inventory
-        //getSelected purchasablePlantList and add it to availablePlantList
         buyButton.setOnAction(_ -> {
             Plant selectedPlant = purchasablePlantList.getSelectionModel().getSelectedItem();
             //if a seed is selected
@@ -54,10 +54,35 @@ public class Interface {
                 paySeed(selectedPlant);
             }
         });
-        initializeField();
         availablePlantList.getSelectionModel().selectedItemProperty().addListener((_, _, inventorySelection) -> {
             if (inventorySelection != null) {
                 System.out.println("Selected seed: " + inventorySelection);
+            }
+        });
+    }
+    public void cellDef() {
+        availablePlantList.setCellFactory(_ -> new ListCell<>() {
+
+            protected void updateItem(Plant plant, boolean empty) {
+                super.updateItem(plant, empty);
+
+                if (empty || plant == null) {
+                    setText(null);
+                } else {
+                    setText(" x" + plant.getSeedQuantity() + " " + plant.getName());
+                }
+            }
+        });
+        purchasablePlantList.setCellFactory(_ -> new ListCell<>() {
+
+            protected void updateItem(Plant plant, boolean empty) {
+                super.updateItem(plant, empty);
+
+                if (empty || plant == null) {
+                    setText(null);
+                } else {
+                    setText(plant.getName() + " | price: " + plant.getPrice() + " | grow time: " + plant.growTime);
+                }
             }
         });
     }
@@ -74,23 +99,11 @@ public class Interface {
         }
     }
     public void addSeedInventory(Plant selectedPlant) {
-        availablePlantList.setCellFactory(_ -> new ListCell<>() {
-
-            @Override
-            protected void updateItem(Plant plant, boolean empty) {
-                super.updateItem(plant, empty);
-
-                if (empty || plant == null) {
-                    setText(null);
-                } else {
-                    setText(" x" + plant.getSeedQuantity() + " " + plant.getName());
-                }
-            }
-        });
         selectedPlant.incPlantQuantityInInventory();
         if(!availablePlantList.getItems().contains(selectedPlant)) {
             availablePlantList.getItems().add(selectedPlant);
         }
+        availablePlantList.refresh();
     }
     public void updateView() {
         //money
