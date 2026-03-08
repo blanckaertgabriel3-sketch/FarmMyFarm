@@ -18,5 +18,10 @@ public class Plant {
     public void incPlantQuantityInInventory() {
         seedQuantity += 1;
     }
+    public void getSeedToPlant(Plant inventorySelection) {
+        if (inventorySelection != null) {
+            System.out.println("Selected seed: " + inventorySelection.getName() + " " + inventorySelection.getSeedQuantity());
+        }
+    }
 
 }

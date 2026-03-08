@@ -24,9 +24,6 @@ public class Land {
         btn.setOnAction(_ -> animatePlant());
     }
     public Button getBtn() {return btn;}
-    public void getSeedToPlant(Plant selectedPlant) {
-        System.out.println("selected seed in inventory: " + selectedPlant.name);
-    }
     public void animatePlant() {
 
         AnimationTimer timer = new AnimationTimer() {

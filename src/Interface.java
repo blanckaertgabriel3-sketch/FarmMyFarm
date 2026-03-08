@@ -31,13 +31,11 @@ public class Interface {
 
     public void initialize() {
         updateView();
-        initializeField();
-        cellDef();
         openMarketW();
+        cellDef();
+        initializeField();
         availablePlantList.getSelectionModel().selectedItemProperty().addListener((_, _, inventorySelection) -> {
-            if (inventorySelection != null) {
-                System.out.println("Selected seed: " + inventorySelection);
-            }
+            inventorySelection.getSeedToPlant(inventorySelection);
         });
     }
     public void openMarketW() {
