@@ -2,6 +2,7 @@ package Classes;
 
 import javafx.scene.control.Button;
 import javafx.animation.AnimationTimer;
+import javafx.scene.control.ListView;
 
 public class Land {
     public Button btn;
@@ -13,7 +14,11 @@ public class Land {
     final double animationDuration = 2;
     private long timerStart = -1;
 
-    public Land() {
+    public Land(ListView<Plant> plantList) {
+        initializeBtn();
+        getSelectedSeedInventory(plantList);
+    }
+    public void initializeBtn() {
         btn = new Button("ici");
         btn.setStyle("-fx-background-color: " + soil + "; -fx-border-radius: 0; -fx-background-radius: 0;");
         btn.setMinWidth(btnSize);
@@ -41,5 +46,12 @@ public class Land {
             }
         };
         timer.start();
+    }
+    public void getSelectedSeedInventory(ListView<Plant> plantList) {
+        plantList.getSelectionModel().selectedItemProperty().addListener((_, _, inventorySelection) -> {
+            if (inventorySelection != null) {
+                System.out.println("selected Seed in inventory: " + inventorySelection.getName());
+            }
+        });
     }
 }

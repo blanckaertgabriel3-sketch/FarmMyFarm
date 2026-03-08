@@ -34,9 +34,6 @@ public class Interface {
         openMarketW();
         cellDef();
         initializeField();
-        availablePlantList.getSelectionModel().selectedItemProperty().addListener((_, _, inventorySelection) -> {
-            inventorySelection.getSeedToPlant(inventorySelection);
-        });
     }
     public void openMarketW() {
         openMarketW.setOnAction(_ -> {
@@ -100,7 +97,7 @@ public class Interface {
 
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < columns; col++) {
-                Land land = new Land();
+                Land land = new Land(availablePlantList);
                 /*
                 landFarm.setHalignment(land.getBtn(), javafx.geometry.HPos.CENTER);
                 landFarm.setValignment(land.getBtn(), javafx.geometry.VPos.CENTER);
