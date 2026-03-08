@@ -1,13 +1,21 @@
 import Classes.Land;
 import Classes.Plant;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.Label;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class Interface {
     //market
+    @FXML
+    private Button openMarketW;
     @FXML
     private ListView<Plant> purchasablePlantList;
     @FXML
@@ -26,6 +34,18 @@ public class Interface {
 
 
     public void initialize() {
+        openMarketW.setOnAction(_ -> {
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("/fxml/Market.fxml"));
+                Stage stage = (Stage) openMarketW.getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.setTitle("Market");
+                stage.setFullScreen(true);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
         updateView();
         initializeField();
         cellDef();

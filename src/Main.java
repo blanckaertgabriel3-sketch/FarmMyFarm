@@ -9,8 +9,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/interface.fxml"));
         primaryStage.setTitle("Farm My Farm");
-        primaryStage.setScene(new Scene(root, 1400, 450));
-        //primaryStage.setFullScreen(true);
+        primaryStage.setScene(new Scene(root));
+        primaryStage.setFullScreen(true);
         primaryStage.show();
     }
 
