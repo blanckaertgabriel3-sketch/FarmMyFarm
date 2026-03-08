@@ -34,21 +34,10 @@ public class Interface {
 
 
     public void initialize() {
-        openMarketW.setOnAction(_ -> {
-            try {
-                Parent root = FXMLLoader.load(getClass().getResource("/fxml/Market.fxml"));
-                Stage stage = (Stage) openMarketW.getScene().getWindow();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.setTitle("Market");
-                stage.setFullScreen(true);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
         updateView();
         initializeField();
         cellDef();
+        openMarketW();
         //seed into market list
         purchasablePlantList.getItems().addAll(
                 new Plant("wheat", 10, 20, 2),
@@ -77,6 +66,20 @@ public class Interface {
         availablePlantList.getSelectionModel().selectedItemProperty().addListener((_, _, inventorySelection) -> {
             if (inventorySelection != null) {
                 System.out.println("Selected seed: " + inventorySelection);
+            }
+        });
+    }
+    public void openMarketW() {
+        openMarketW.setOnAction(_ -> {
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("/fxml/Market.fxml"));
+                Stage stage = (Stage) openMarketW.getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.setTitle("Market");
+                stage.setFullScreen(true);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         });
     }
