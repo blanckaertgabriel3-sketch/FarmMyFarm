@@ -8,10 +8,11 @@ public class Land {
     public Button btn;
     public double btnSize = 100;
     public String soil = "#8B5A2B";
-    public String growing = "#3CB043";
-    public String ready = "#FFD700";
+    public String growingState1 = "/img/frutsState/wheat/wheatState1.png";
+    public String growingState2 = "/img/frutsState/wheat/wheatState2.png";
+    public String ready = "/img/frutsState/wheat/wheatState3.png";
 
-    final double animationDuration = 2;
+    final double animationDuration = 3;
     private long timerStart = -1;
 
     public Land(ListView<Plant> plantList) {
@@ -19,7 +20,7 @@ public class Land {
         getSelectedSeedInventory(plantList);
     }
     public void initializeBtn() {
-        btn = new Button("ici");
+        btn = new Button();
         btn.setStyle("-fx-background-color: " + soil + "; -fx-border-radius: 0; -fx-background-radius: 0;");
         btn.setMinWidth(btnSize);
         btn.setMinHeight(btnSize);
@@ -35,11 +36,35 @@ public class Land {
             public void handle(long now) {
                 if(timerStart < 0) timerStart = now;
                 double lapSeedSeconds = (now - timerStart) / 1_000_000_000.0;
-                if (lapSeedSeconds < animationDuration) {
-                    btn.setStyle("-fx-background-color: " + growing + "; -fx-border-radius: 0; -fx-background-radius: 0;");
+                if (lapSeedSeconds < animationDuration/2) {
+                    btn.setStyle(
+                            "-fx-background-image: url('" + growingState1 + "');" +
+                                    "-fx-background-repeat: no-repeat;" +
+                                    "-fx-background-size: 100% 100%;" +
+                                    "-fx-background-position: center;" +
+                                    "-fx-border-radius: 0;" +
+                                    "-fx-background-radius: 0;"
+                    );
+                }
+                else if (lapSeedSeconds < animationDuration){
+                    btn.setStyle(
+                            "-fx-background-image: url('" + growingState2 + "');" +
+                                    "-fx-background-repeat: no-repeat;" +
+                                    "-fx-background-size: 100% 100%;" +
+                                    "-fx-background-position: center;" +
+                                    "-fx-border-radius: 0;" +
+                                    "-fx-background-radius: 0;"
+                    );
                 }
                 else {
-                    btn.setStyle("-fx-background-color: " + ready + "; -fx-border-radius: 0; -fx-background-radius: 0;");
+                    btn.setStyle(
+                            "-fx-background-image: url('" + ready + "');" +
+                                    "-fx-background-repeat: no-repeat;" +
+                                    "-fx-background-size: 100% 100%;" +
+                                    "-fx-background-position: center;" +
+                                    "-fx-border-radius: 0;" +
+                                    "-fx-background-radius: 0;"
+                    );
                     System.out.println("plant is ready");
                     this.stop();
                 }
@@ -50,8 +75,9 @@ public class Land {
     public void getSelectedSeedInventory(ListView<Plant> plantList) {
         plantList.getSelectionModel().selectedItemProperty().addListener((_, _, inventorySelection) -> {
             if (inventorySelection != null) {
-                System.out.println("selected Seed in inventory: " + inventorySelection.getName());
+                System.out.println("selected Seed in inventory: " + inventorySelection.getName() + " " + inventorySelection.getSeedQuantity());
             }
         });
     }
+
 }

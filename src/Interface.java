@@ -88,11 +88,11 @@ public class Interface {
         visualAvailableFunds.setText(String.valueOf(availableFunds));
     }
     public void initializeField() {
-        int rows = 2;
+        int rows = 5;
         int columns = 5;
-
-        landFarm.setHgap(5);
-        landFarm.setVgap(5);
+        double spaceBetweenBnt = 2;
+        landFarm.setHgap(spaceBetweenBnt);
+        landFarm.setVgap(spaceBetweenBnt);
 
         // Land[][] lands = new Land[rows][columns];
 
