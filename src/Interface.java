@@ -16,10 +16,6 @@ public class Interface {
     //market
     @FXML
     private Button openMarketW;
-    @FXML
-    private ListView<Plant> purchasablePlantList;
-    @FXML
-    private Button buyButton;
     //land Farm
     @FXML
     private GridPane landFarm;
@@ -38,31 +34,6 @@ public class Interface {
         initializeField();
         cellDef();
         openMarketW();
-        //seed into market list
-        purchasablePlantList.getItems().addAll(
-                new Plant("wheat", 10, 20, 2),
-                new Plant("carrot", 15, 30, 3),
-                new Plant("potato", 20, 40, 4),
-                new Plant("tomato", 25, 50, 5),
-                new Plant("chili", 30, 60, 6),
-                new Plant("strawberry", 35, 70, 7),
-                new Plant("grape", 40, 80, 8),
-                new Plant("lemon", 45, 90, 9),
-                new Plant("banana", 50, 100, 10),
-                new Plant("peach", 55, 110, 11),
-                new Plant("mushroom", 60, 120, 12),
-                new Plant("red_flower", 65, 130, 13),
-                new Plant("sugarcane", 70, 140, 14),
-                new Plant("pineapple", 80, 160, 15),
-                new Plant("watermelon", 90, 180, 16)
-        );
-        buyButton.setOnAction(_ -> {
-            Plant selectedPlant = purchasablePlantList.getSelectionModel().getSelectedItem();
-            //if a seed is selected
-            if(selectedPlant != null) {
-                paySeed(selectedPlant);
-            }
-        });
         availablePlantList.getSelectionModel().selectedItemProperty().addListener((_, _, inventorySelection) -> {
             if (inventorySelection != null) {
                 System.out.println("Selected seed: " + inventorySelection);
@@ -93,18 +64,6 @@ public class Interface {
                     setText(null);
                 } else {
                     setText(" x" + plant.getSeedQuantity() + " " + plant.getName());
-                }
-            }
-        });
-        purchasablePlantList.setCellFactory(_ -> new ListCell<>() {
-
-            protected void updateItem(Plant plant, boolean empty) {
-                super.updateItem(plant, empty);
-
-                if (empty || plant == null) {
-                    setText(null);
-                } else {
-                    setText(plant.getName() + " | price: " + plant.getPrice() + " | grow time: " + plant.growTime);
                 }
             }
         });

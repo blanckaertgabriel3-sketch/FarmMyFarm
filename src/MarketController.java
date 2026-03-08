@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
@@ -18,20 +19,22 @@ public class MarketController {
     private ListView<Plant> purchasablePlantList;
     @FXML
     private Button buyButton;
+    @FXML
+    private Label visualAvailableFunds;
 
 
-    public void initialize() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/interface.fxml"));
-        Parent root = loader.load();
-        Interface interfaceController = loader.getController();
-        closeWBtn.setOnAction(_ -> {
-            Stage stage = (Stage) closeWBtn.getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setTitle("Market");
-            stage.setFullScreen(true);
-        });
-        //seed into market list
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/interface.fxml"));
+    Parent root = loader.load();
+    Interface interfaceController = loader.getController();
+
+    public MarketController() throws IOException {}
+    public void initialize() {
+        updateView();
+        closeW();
+        purchasePlantList();
+    }
+    public void purchasePlantList() {
+        //Seed List
         purchasablePlantList.getItems().addAll(
                 new Plant("wheat", 10, 20, 2),
                 new Plant("carrot", 15, 30, 3),
@@ -49,13 +52,16 @@ public class MarketController {
                 new Plant("pineapple", 80, 160, 15),
                 new Plant("watermelon", 90, 180, 16)
         );
+        //pay seed if enought money
         buyButton.setOnAction(_ -> {
             Plant selectedPlant = purchasablePlantList.getSelectionModel().getSelectedItem();
             //if a seed is selected
             if(selectedPlant != null) {
                 interfaceController.paySeed(selectedPlant);
+                updateView();
             }
         });
+        //cell def
         purchasablePlantList.setCellFactory(_ -> new ListCell<>() {
 
             protected void updateItem(Plant plant, boolean empty) {
@@ -68,7 +74,18 @@ public class MarketController {
                 }
             }
         });
-
-
+    }
+    public void closeW() {
+        closeWBtn.setOnAction(_ -> {
+            Stage stage = (Stage) closeWBtn.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Market");
+            stage.setFullScreen(true);
+        });
+    }
+    public void updateView() {
+        //money
+        visualAvailableFunds.setText(String.valueOf(interfaceController.availableFunds));
     }
 }
