@@ -16,7 +16,7 @@ public class Land {
     //animation
     public boolean isAnimate = false;
     private long timerStart = -1;
-    final double animationDuration = 4;
+    public double animationDuration;
     //selection
     public ListView<Plant> plantList;
     public Plant inventorySelection;
@@ -39,7 +39,14 @@ public class Land {
     }
     public Button getBtn() {return btn;}
     public void animatePlant() {
+        if(growingState1 != null && growingState2!=null && ready!=null && plantItem!=null && inventorySelection.seedQuantity > 0) {
+            animate();
+        }
+    }
+    public void animate() {
         isAnimate = true;
+        inventorySelection.seedQuantity -= 1;
+        plantList.refresh();
         AnimationTimer timer = new AnimationTimer() {
             public void handle(long now) {
                 if(timerStart < 0) timerStart = now;
@@ -85,6 +92,7 @@ public class Land {
             if (inventorySelection != null && !isAnimate) {
                 stockSelectedSeed(inventorySelection);
                 urlPlant(inventorySelection);
+                this.animationDuration = inventorySelection.growTime;
             }
         });
     }
