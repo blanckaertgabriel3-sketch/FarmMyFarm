@@ -37,7 +37,7 @@ public class MarketController {
         //Seed List
         purchasablePlantList.getItems().addAll(
                 new Plant("wheat", 10, 20, 2),
-                new Plant("carrot", 15, 30, 3),
+                new Plant("carrot", 15, 30, 3)/*,
                 new Plant("potato", 20, 40, 4),
                 new Plant("tomato", 25, 50, 5),
                 new Plant("chili", 30, 60, 6),
@@ -51,6 +51,7 @@ public class MarketController {
                 new Plant("sugarcane", 70, 140, 14),
                 new Plant("pineapple", 80, 160, 15),
                 new Plant("watermelon", 90, 180, 16)
+                */
         );
         //pay seed if enought money
         buyButton.setOnAction(_ -> {

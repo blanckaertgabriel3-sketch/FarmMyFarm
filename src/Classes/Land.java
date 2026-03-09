@@ -14,6 +14,7 @@ public class Land {
     public String ready;
     public String plantItem;
     //animation
+    public boolean isAnimate = false;
     private long timerStart = -1;
     final double animationDuration = 4;
     //selection
@@ -38,6 +39,7 @@ public class Land {
     }
     public Button getBtn() {return btn;}
     public void animatePlant() {
+        isAnimate = true;
         AnimationTimer timer = new AnimationTimer() {
             public void handle(long now) {
                 if(timerStart < 0) timerStart = now;
@@ -71,8 +73,8 @@ public class Land {
                                     "-fx-border-radius: 0;" +
                                     "-fx-background-radius: 0;"
                     );
-                    System.out.println("plant is ready");
                     this.stop();
+                    isAnimate = false;
                 }
             }
         };
@@ -80,7 +82,7 @@ public class Land {
     }
     public void getSelectedSeedInventory(ListView<Plant> plantList) {
         plantList.getSelectionModel().selectedItemProperty().addListener((_, _, inventorySelection) -> {
-            if (inventorySelection != null) {
+            if (inventorySelection != null && !isAnimate) {
                 stockSelectedSeed(inventorySelection);
                 urlPlant(inventorySelection);
             }
