@@ -7,15 +7,22 @@ import javafx.scene.control.ListView;
 public class Land {
     public Button btn;
     public double btnSize = 100;
+    //plant animation
     public String soil = "#8B5A2B";
-    public String growingState1 = "/img/frutsState/wheat/wheatState1.png";
-    public String growingState2 = "/img/frutsState/wheat/wheatState2.png";
-    public String ready = "/img/frutsState/wheat/wheatState3.png";
-
-    final double animationDuration = 3;
+    public String growingState1;
+    public String growingState2;
+    public String ready;
+    public String plantItem;
+    //animation
     private long timerStart = -1;
+    final double animationDuration = 4;
+    //selection
+    public ListView<Plant> plantList;
+    public Plant inventorySelection;
+
 
     public Land(ListView<Plant> plantList) {
+        this.plantList = plantList;
         initializeBtn();
         getSelectedSeedInventory(plantList);
     }
@@ -31,7 +38,6 @@ public class Land {
     }
     public Button getBtn() {return btn;}
     public void animatePlant() {
-
         AnimationTimer timer = new AnimationTimer() {
             public void handle(long now) {
                 if(timerStart < 0) timerStart = now;
@@ -75,9 +81,19 @@ public class Land {
     public void getSelectedSeedInventory(ListView<Plant> plantList) {
         plantList.getSelectionModel().selectedItemProperty().addListener((_, _, inventorySelection) -> {
             if (inventorySelection != null) {
-                System.out.println("selected Seed in inventory: " + inventorySelection.getName() + " " + inventorySelection.getSeedQuantity());
+                stockSelectedSeed(inventorySelection);
+                urlPlant(inventorySelection);
             }
         });
+    }
+    public void stockSelectedSeed(Plant inventorySelection) {
+        this.inventorySelection = inventorySelection;
+    }
+    public void urlPlant(Plant inventorySelection) {
+        this.growingState1 = "/img/frutsState/" + inventorySelection.getName() + "/state1.png";
+        this.growingState2 = "/img/frutsState/" + inventorySelection.getName() + "/state2.png";
+        this.ready = "/img/frutsState/" + inventorySelection.getName() + "/state3.png";
+        this.plantItem = "/img/frutsState/" + inventorySelection.getName() + "/item.png";
     }
 
 }
