@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class Interface {
     //market
     @FXML
-    private Button openMarketW;
+    public Button openMarketW;
     //land Farm
     @FXML
     private GridPane landFarm;
@@ -42,10 +42,11 @@ public class Interface {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Market.fxml"));
                 Parent root = loader.load();
+                MarketController marketController = loader.getController();
+                marketController.setInterfaceController(this);
 
                 Stage stage = (Stage) openMarketW.getScene().getWindow();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
+                stage.setScene(new Scene(root));
                 stage.setTitle("Market");
                 stage.setFullScreen(true);
             } catch (IOException e) {

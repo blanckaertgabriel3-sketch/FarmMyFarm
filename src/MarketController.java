@@ -22,14 +22,13 @@ public class MarketController {
     @FXML
     private Label visualAvailableFunds;
 
+    public Interface interfaceController;
+    public Scene interfaceScene;
 
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/interface.fxml"));
-    Parent root = loader.load();
-    Interface interfaceController = loader.getController();
 
-    public MarketController() throws IOException {}
+
+    public MarketController() {}
     public void initialize() {
-        updateView();
         closeW();
         purchasePlantList();
     }
@@ -76,12 +75,17 @@ public class MarketController {
             }
         });
     }
+    public void setInterfaceController(Interface controller) {
+        this.interfaceController = controller;
+        this.interfaceScene = controller.openMarketW.getScene();
+        updateView();
+    }
+
     public void closeW() {
         closeWBtn.setOnAction(_ -> {
             Stage stage = (Stage) closeWBtn.getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setTitle("Market");
+            stage.setScene(interfaceScene);
+            stage.setTitle("Farm");
             stage.setFullScreen(true);
         });
     }
