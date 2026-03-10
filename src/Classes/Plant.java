@@ -12,8 +12,5 @@ public class Plant {
         this.sellPrice = sellPrice;
         this.growTime = growTime;
     }
-    public String getName() { return name; }
-    public double getPrice() { return price; }
-    public double getSeedQuantity() { return seedQuantity; }
     public void incPlantQuantityInInventory() {seedQuantity += 1;}
 }

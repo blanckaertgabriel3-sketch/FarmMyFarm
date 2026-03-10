@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Interface {
     //market
@@ -34,12 +35,14 @@ public class Interface {
         openMarketW();
         cellDef();
         initializeField();
+
     }
     public void openMarketW() {
         openMarketW.setOnAction(_ -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Market.fxml"));
                 Parent root = loader.load();
+
                 Stage stage = (Stage) openMarketW.getScene().getWindow();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
@@ -59,7 +62,8 @@ public class Interface {
                 if (empty || plant == null) {
                     setText(null);
                 } else {
-                    setText(" x" + plant.getSeedQuantity() + " " + plant.getName());
+                    String str = " x" + plant.seedQuantity + " " + plant.name;
+                    setText(str);
                 }
             }
         });
@@ -69,8 +73,8 @@ public class Interface {
         return reference >= itemPrice;
     }
     public void paySeed(Plant selectedPlant) {
-        if(canPay(availableFunds, selectedPlant.getPrice())) {
-            availableFunds -= selectedPlant.getPrice();
+        if(canPay(availableFunds, selectedPlant.price)) {
+            availableFunds -= selectedPlant.price;
             updateView();
             addSeedInventory(selectedPlant);
 

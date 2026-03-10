@@ -71,7 +71,7 @@ public class MarketController {
                 if (empty || plant == null) {
                     setText(null);
                 } else {
-                    setText(plant.getName() + " | price: " + plant.getPrice() + " | grow time: " + plant.growTime);
+                    setText(plant.name+ " | price: " + plant.price + " | grow time: " + plant.growTime);
                 }
             }
         });

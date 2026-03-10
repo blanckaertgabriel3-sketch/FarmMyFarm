@@ -44,6 +44,7 @@ public class Land {
         }
     }
     public void animate() {
+        timerStart = -1;
         isAnimate = true;
         inventorySelection.seedQuantity -= 1;
         plantList.refresh();
@@ -100,10 +101,10 @@ public class Land {
         this.inventorySelection = inventorySelection;
     }
     public void urlPlant(Plant inventorySelection) {
-        this.growingState1 = "/img/frutsState/" + inventorySelection.getName() + "/state1.png";
-        this.growingState2 = "/img/frutsState/" + inventorySelection.getName() + "/state2.png";
-        this.ready = "/img/frutsState/" + inventorySelection.getName() + "/state3.png";
-        this.plantItem = "/img/frutsState/" + inventorySelection.getName() + "/item.png";
+        this.growingState1 = "/img/frutsState/" + inventorySelection.name + "/state1.png";
+        this.growingState2 = "/img/frutsState/" + inventorySelection.name + "/state2.png";
+        this.ready = "/img/frutsState/" + inventorySelection.name + "/state3.png";
+        this.plantItem = "/img/frutsState/" + inventorySelection.name + "/item.png";
     }
 
 }
