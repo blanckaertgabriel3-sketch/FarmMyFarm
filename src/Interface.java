@@ -26,15 +26,14 @@ public class Interface {
     public ListView<Plant> availablePlantList;
     @FXML
     private Label visualAvailableFunds;
-
     public static final List<Plant> shopPlant = List.of(
             new Plant("wheat", 5, 20),
-            new Plant("carrot", 8, 30),
-            new Plant("potato", 12, 45),
-            new Plant("peach", 20, 70),
-            new Plant("mushroom", 25, 90),
-            new Plant("sugarcane", 35, 120),
-            new Plant("watermelon", 50, 160)
+            new Plant("carrot",50, 30),
+            new Plant("potato", 150, 45),
+            new Plant("peach",250 , 70),
+            new Plant("mushroom", 400, 90),
+            new Plant("sugarcane", 600, 120),
+            new Plant("watermelon", 850, 160)
 
             /*
             new Plant("tomato", 25, 50, 5),
@@ -48,7 +47,7 @@ public class Interface {
 
              */
     );
-    public double availableFunds = 50;
+    public double availableFunds = 10;
 
 
 
