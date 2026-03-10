@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="735.0" prefWidth="1483.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MarketController">
@@ -15,8 +16,6 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <ListView fx:id="purchasablePlantList" layoutX="24.0" layoutY="24.0" prefHeight="600.0" prefWidth="282.0" />
-      <Button fx:id="buyButton" layoutX="323.0" layoutY="24.0" mnemonicParsing="false" text="Buy" />
       <Group layoutX="1227.0" layoutY="13.0">
          <children>
             <HBox prefHeight="45.0" prefWidth="187.0">
@@ -33,6 +32,26 @@
                   </Label>
                </children>
             </HBox>
+         </children>
+      </Group>
+      <Group layoutX="565.0" layoutY="39.0">
+         <children>
+            <VBox prefHeight="584.0" prefWidth="241.0">
+               <children>
+                  <ListView id="sellList" prefHeight="558.0" prefWidth="242.0" />
+                  <Button id="sellButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="257.0" text="Sell" textAlignment="JUSTIFY" />
+               </children>
+            </VBox>
+         </children>
+      </Group>
+      <Group layoutX="275.0" layoutY="39.0">
+         <children>
+            <VBox prefHeight="584.0" prefWidth="241.0">
+               <children>
+                  <ListView fx:id="purchasablePlantList" prefHeight="600.0" prefWidth="282.0" />
+                  <Button fx:id="buyButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="253.0" text="Buy" />
+               </children>
+            </VBox>
          </children>
       </Group>
    </children>

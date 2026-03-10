@@ -76,4 +76,7 @@ public class MarketController {
         //money
         visualAvailableFunds.setText(String.valueOf(interfaceController.availableFunds));
     }
+    public void sellInventory() {
+
+    }
 }

@@ -93,13 +93,13 @@ public class Land {
             timer.start();
             landAction +=1;
         }
-        else if (isAnimate && isReady){
-            isReady = false;
-            isAnimate = false;
+        else if (landAction > 0 && isAnimate && isReady){
             btn.setStyle("-fx-background-color: " + soil + "; -fx-border-radius: 0; -fx-background-radius: 0;");
             inventorySelection.seedQuantity += 2;
             plantList.refresh();
             landAction = 0;
+            isReady = false;
+            isAnimate = false;
         }
     }
     public void getSelectedSeedInventory(ListView<Plant> plantList) {
