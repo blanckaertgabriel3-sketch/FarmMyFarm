@@ -23,18 +23,18 @@ public class Interface {
     private GridPane landFarm;
     //inventory
     @FXML
-    private ListView<Plant> availablePlantList;
+    public ListView<Plant> availablePlantList;
     @FXML
     private Label visualAvailableFunds;
 
     public static final List<Plant> shopPlant = List.of(
-            new Plant("wheat", 10, 20, 2),
-            new Plant("carrot", 15, 30, 3),
-            new Plant("potato", 20, 40, 4),
-            new Plant("peach", 55, 110, 11),
-            new Plant("mushroom", 60, 120, 12),
-            new Plant("sugarcane", 70, 140, 14),
-            new Plant("watermelon", 90, 180, 16)
+            new Plant("wheat", 5, 20),
+            new Plant("carrot", 8, 30),
+            new Plant("potato", 12, 45),
+            new Plant("peach", 20, 70),
+            new Plant("mushroom", 25, 90),
+            new Plant("sugarcane", 35, 120),
+            new Plant("watermelon", 50, 160)
 
             /*
             new Plant("tomato", 25, 50, 5),
@@ -48,7 +48,7 @@ public class Interface {
 
              */
     );
-    public double availableFunds = 200;
+    public double availableFunds = 50;
 
 
 
