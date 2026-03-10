@@ -15,6 +15,8 @@ public class Land {
     public String plantItem;
     //animation
     public boolean isAnimate = false;
+    public boolean isReady = false;
+    public int landAction = 0;
     private long timerStart = -1;
     public double animationDuration;
     //selection
@@ -37,56 +39,68 @@ public class Land {
     public void btnAction() {
         btn.setOnAction(_ -> animatePlant());
     }
-    public Button getBtn() {return btn;}
+
     public void animatePlant() {
         if(growingState1 != null && growingState2!=null && ready!=null && plantItem!=null && inventorySelection.seedQuantity > 0) {
             animate();
         }
     }
     public void animate() {
-        timerStart = -1;
-        isAnimate = true;
-        inventorySelection.seedQuantity -= 1;
-        plantList.refresh();
-        AnimationTimer timer = new AnimationTimer() {
-            public void handle(long now) {
-                if(timerStart < 0) timerStart = now;
-                double lapSeedSeconds = (now - timerStart) / 1_000_000_000.0;
-                if (lapSeedSeconds < animationDuration/2) {
-                    btn.setStyle(
-                            "-fx-background-image: url('" + growingState1 + "');" +
-                                    "-fx-background-repeat: no-repeat;" +
-                                    "-fx-background-size: 100% 100%;" +
-                                    "-fx-background-position: center;" +
-                                    "-fx-border-radius: 0;" +
-                                    "-fx-background-radius: 0;"
-                    );
+        if (landAction == 0) {
+            timerStart = -1;
+            isAnimate = true;
+            inventorySelection.seedQuantity -= 1;
+            plantList.refresh();
+            AnimationTimer timer = new AnimationTimer() {
+                public void handle(long now) {
+                    if(timerStart < 0) timerStart = now;
+                    double lapSeedSeconds = (now - timerStart) / 1_000_000_000.0;
+                    if (lapSeedSeconds < animationDuration/2) {
+                        btn.setStyle(
+                                "-fx-background-image: url('" + growingState1 + "');" +
+                                        "-fx-background-repeat: no-repeat;" +
+                                        "-fx-background-size: 100% 100%;" +
+                                        "-fx-background-position: center;" +
+                                        "-fx-border-radius: 0;" +
+                                        "-fx-background-radius: 0;"
+                        );
+                    }
+                    else if (lapSeedSeconds < animationDuration){
+                        btn.setStyle(
+                                "-fx-background-image: url('" + growingState2 + "');" +
+                                        "-fx-background-repeat: no-repeat;" +
+                                        "-fx-background-size: 100% 100%;" +
+                                        "-fx-background-position: center;" +
+                                        "-fx-border-radius: 0;" +
+                                        "-fx-background-radius: 0;"
+                        );
+                    }
+                    else {
+                        isReady = true;
+                        btn.setStyle(
+                                "-fx-background-image: url('" + ready + "');" +
+                                        "-fx-background-repeat: no-repeat;" +
+                                        "-fx-background-size: 100% 100%;" +
+                                        "-fx-background-position: center;" +
+                                        "-fx-border-radius: 0;" +
+                                        "-fx-background-radius: 0;"
+                        );
+                        this.stop();
+
+                    }
                 }
-                else if (lapSeedSeconds < animationDuration){
-                    btn.setStyle(
-                            "-fx-background-image: url('" + growingState2 + "');" +
-                                    "-fx-background-repeat: no-repeat;" +
-                                    "-fx-background-size: 100% 100%;" +
-                                    "-fx-background-position: center;" +
-                                    "-fx-border-radius: 0;" +
-                                    "-fx-background-radius: 0;"
-                    );
-                }
-                else {
-                    btn.setStyle(
-                            "-fx-background-image: url('" + ready + "');" +
-                                    "-fx-background-repeat: no-repeat;" +
-                                    "-fx-background-size: 100% 100%;" +
-                                    "-fx-background-position: center;" +
-                                    "-fx-border-radius: 0;" +
-                                    "-fx-background-radius: 0;"
-                    );
-                    this.stop();
-                    isAnimate = false;
-                }
-            }
-        };
-        timer.start();
+            };
+            timer.start();
+            landAction +=1;
+        }
+        else if (isAnimate && isReady){
+            isReady = false;
+            isAnimate = false;
+            btn.setStyle("-fx-background-color: " + soil + "; -fx-border-radius: 0; -fx-background-radius: 0;");
+            inventorySelection.seedQuantity += 2;
+            plantList.refresh();
+            landAction = 0;
+        }
     }
     public void getSelectedSeedInventory(ListView<Plant> plantList) {
         plantList.getSelectionModel().selectedItemProperty().addListener((_, _, inventorySelection) -> {

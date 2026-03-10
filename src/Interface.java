@@ -130,7 +130,7 @@ public class Interface {
                  */
                 landFarm.setAlignment(Pos.TOP_CENTER);
 
-                landFarm.add(land.getBtn(), col, row);
+                landFarm.add(land.btn, col, row);
             }
         }
     }
