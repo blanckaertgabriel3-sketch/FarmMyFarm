@@ -34,24 +34,7 @@ public class MarketController {
     }
     public void purchasePlantList() {
         //Seed List
-        purchasablePlantList.getItems().addAll(
-                new Plant("wheat", 10, 20, 2),
-                new Plant("carrot", 15, 30, 3)/*,
-                new Plant("potato", 20, 40, 4),
-                new Plant("tomato", 25, 50, 5),
-                new Plant("chili", 30, 60, 6),
-                new Plant("strawberry", 35, 70, 7),
-                new Plant("grape", 40, 80, 8),
-                new Plant("lemon", 45, 90, 9),
-                new Plant("banana", 50, 100, 10),
-                new Plant("peach", 55, 110, 11),
-                new Plant("mushroom", 60, 120, 12),
-                new Plant("red_flower", 65, 130, 13),
-                new Plant("sugarcane", 70, 140, 14),
-                new Plant("pineapple", 80, 160, 15),
-                new Plant("watermelon", 90, 180, 16)
-                */
-        );
+        purchasablePlantList.getItems().addAll(Interface.shopPlant);
         //pay seed if enought money
         buyButton.setOnAction(_ -> {
             Plant selectedPlant = purchasablePlantList.getSelectionModel().getSelectedItem();
