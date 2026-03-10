@@ -41,12 +41,12 @@ public class Land {
     }
 
     public void animatePlant() {
-        if(growingState1 != null && growingState2!=null && ready!=null && plantItem!=null && inventorySelection.seedQuantity > 0) {
+        if(growingState1 != null && growingState2!=null && ready!=null && plantItem!=null) {
             animate();
         }
     }
     public void animate() {
-        if (landAction == 0) {
+        if (landAction == 0 && inventorySelection.seedQuantity > 0) {
             timerStart = -1;
             isAnimate = true;
             inventorySelection.seedQuantity -= 1;
