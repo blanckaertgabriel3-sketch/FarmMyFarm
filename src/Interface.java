@@ -65,6 +65,7 @@ public class Interface {
                 Parent root = loader.load();
                 MarketController marketController = loader.getController();
                 marketController.setInterfaceController(this);
+                root.getStylesheets().add(getClass().getResource("/css/interface.css").toExternalForm());
 
                 Stage stage = (Stage) openMarketW.getScene().getWindow();
                 stage.setScene(new Scene(root));
@@ -114,8 +115,8 @@ public class Interface {
         visualAvailableFunds.setText(String.valueOf(availableFunds));
     }
     public void initializeField() {
-        int rows = 5;
-        int columns = 5;
+        int rows = 9;
+        int columns = 8;
         double spaceBetweenBnt = 2;
         landFarm.setHgap(spaceBetweenBnt);
         landFarm.setVgap(spaceBetweenBnt);

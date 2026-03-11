@@ -1,0 +1,36 @@
+.list-view {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+.list-cell {
+    -fx-background-color: transparent;
+}
+.list-cell:filled {
+    -fx-background-color: rgba(0, 0, 0, 0.4);
+    -fx-text-fill: white;
+}
+.list-cell:filled:selected {
+    -fx-background-color: "#8B4C3B";
+    -fx-text-fill: white;
+}
+.list-cell:filled:hover {
+    -fx-background-color: "#694E33";
+}
+.root {
+    -fx-background-image: url("/img/bg/farm.jpg");
+    -fx-background-size: cover;
+}
+#marketRoot {
+    -fx-background-image: url("/img/bg/fishing.jpg");
+    -fx-background-size: cover;
+}
+/*INVENTORY*/
+#backgroundInventory {
+    -fx-background-color: "#C4AD80";
+}
+#sellList {
+    -fx-background-color: "#C4AD80";
+}
+#purchasablePlantList {
+    -fx-background-color: "#C4AD80";
+}

@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 
@@ -26,7 +27,8 @@ public class MarketController {
     private Button sellButton;
     @FXML
     private TextField sellQuantity;
-
+    @FXML
+    public AnchorPane marketRoot;
 
 
     public Interface interfaceController;
@@ -45,6 +47,8 @@ public class MarketController {
                 interfaceController.availableFunds += (quantity * sellPlantSelected.price);
                 sellList.refresh();
                 updateView();
+                interfaceController.updateView();
+                interfaceController.availablePlantList.refresh();
             }
         });
         sellList.setCellFactory(_ -> new ListCell<>() {
@@ -108,8 +112,5 @@ public class MarketController {
     public void updateView() {
         //money
         visualAvailableFunds.setText(String.valueOf(interfaceController.availableFunds));
-    }
-    public void sellInventory() {
-
     }
 }

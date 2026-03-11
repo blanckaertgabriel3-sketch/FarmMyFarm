@@ -7,41 +7,46 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="754.0" prefWidth="1465.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="754.0" prefWidth="1587.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface">
    <children>
       <GridPane fx:id="landFarm" layoutX="396.0" layoutY="40.0" prefHeight="574.0" prefWidth="720.0" />
-      <Group layoutX="1175.0">
+      <Group layoutX="1131.0" layoutY="47.0">
          <children>
-            <VBox prefHeight="632.0" prefWidth="263.0">
+            <VBox layoutX="128.0" layoutY="-33.0" prefHeight="706.0" prefWidth="263.0">
                <children>
                   <HBox prefHeight="45.0" prefWidth="187.0">
                      <children>
                         <Label text="Money ">
                            <font>
-                              <Font size="24.0" />
+                              <Font name="System Bold" size="30.0" />
                            </font>
                         </Label>
-                        <Label fx:id="visualAvailableFunds" text=" ">
+                        <Label fx:id="visualAvailableFunds" prefHeight="46.0" prefWidth="150.0" text="0">
                            <font>
-                              <Font size="24.0" />
+                              <Font name="System Bold" size="30.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <Label prefHeight="35.0" prefWidth="163.0" text="Inventory">
+                  <Label prefHeight="35.0" prefWidth="163.0" text="Inventory:">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <ListView fx:id="availablePlantList" prefHeight="582.0" prefWidth="227.0" />
+                  <StackPane id="backgroundInventory" prefHeight="639.0" prefWidth="263.0">
+                     <children>
+                        <ListView fx:id="availablePlantList" prefHeight="182.0" prefWidth="263.0" />
+                     </children>
+                  </StackPane>
                </children>
             </VBox>
          </children>
       </Group>
-      <Button fx:id="openMarketW" layoutX="11.0" layoutY="17.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="197.0" text="Market 🛒">
+      <Button fx:id="openMarketW" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="200.0" text="Market 🛒">
          <font>
             <Font size="24.0" />
          </font>

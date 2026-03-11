@@ -6,9 +6,9 @@ import javafx.scene.control.ListView;
 
 public class Land {
     public Button btn;
-    public double btnSize = 100;
+    public double btnSize = 75;
     //plant animation
-    public String soil = "#8B5A2B";
+    public String soil = "rgba(139,90,43,0.25)";
     public String growingState1;
     public String growingState2;
     public String ready;
