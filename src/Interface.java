@@ -28,12 +28,12 @@ public class Interface {
     private Label visualAvailableFunds;
     public static final List<Plant> shopPlant = List.of(
             new Plant("wheat", 5, 20),
-            new Plant("carrot",50, 30),
-            new Plant("potato", 150, 45),
-            new Plant("peach",250 , 70),
-            new Plant("mushroom", 400, 90),
-            new Plant("sugarcane", 600, 120),
-            new Plant("watermelon", 850, 160)
+            new Plant("carrot",180, 30),
+            new Plant("potato", 6480, 45),
+            new Plant("peach",233280 , 70),
+            new Plant("mushroom", 8398080, 90),
+            new Plant("sugarcane", 302330880, 120),
+            new Plant("watermelon", 1988391168, 160)
 
             /*
             new Plant("tomato", 25, 50, 5),
@@ -47,7 +47,7 @@ public class Interface {
 
              */
     );
-    public double availableFunds = 10;
+    public double availableFunds = 5;
 
 
 
