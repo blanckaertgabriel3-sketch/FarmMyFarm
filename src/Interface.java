@@ -47,7 +47,7 @@ public class Interface {
 
              */
     );
-    public double availableFunds = 5;
+    public double availableFunds = 10;
 
 
 

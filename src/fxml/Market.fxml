@@ -35,27 +35,27 @@
             </HBox>
          </children>
       </Group>
-      <Group layoutX="990.0" layoutY="39.0">
+      <Group layoutX="1029.0" layoutY="39.0">
          <children>
-            <VBox prefHeight="584.0" prefWidth="241.0">
+            <VBox prefHeight="584.0" prefWidth="268.0">
                <children>
-                  <ListView fx:id="sellList" prefHeight="558.0" prefWidth="242.0" />
+                  <ListView fx:id="sellList" prefHeight="566.0" prefWidth="268.0" />
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="sellQuantity" prefHeight="79.0" prefWidth="241.0" promptText="Quantity:" />
+                        <TextField fx:id="sellQuantity" prefHeight="95.0" prefWidth="269.0" promptText="Quantity:" />
                      </children>
                   </HBox>
-                  <Button fx:id="sellButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="257.0" text="Sell" textAlignment="JUSTIFY" />
+                  <Button fx:id="sellButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="287.0" text="Sell" textAlignment="JUSTIFY" />
                </children>
             </VBox>
          </children>
       </Group>
-      <Group layoutX="376.0" layoutY="39.0">
+      <Group layoutX="257.0" layoutY="38.0">
          <children>
-            <VBox layoutX="-76.0" layoutY="1.0" prefHeight="584.0" prefWidth="257.0">
+            <VBox layoutX="-76.0" layoutY="1.0" prefHeight="584.0" prefWidth="317.0">
                <children>
                   <ListView fx:id="purchasablePlantList" prefHeight="600.0" prefWidth="282.0" />
-                  <Button fx:id="buyButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="279.0" text="Buy" />
+                  <Button fx:id="buyButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="339.0" text="Buy" />
                </children>
             </VBox>
          </children>
